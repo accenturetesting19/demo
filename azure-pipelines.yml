@@ -10,7 +10,7 @@ pool:
   vmImage: windows-latest
 
 steps:
-- task : gitmirror@0
+- task : GitHubComment@0
   inputs:
     GitRepoUrl: 'https://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@dev.azure.com/sapnamanokar/Demo/_git/demo.git'
 
