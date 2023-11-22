@@ -22,7 +22,7 @@ stages:
         - name: GITHUB_PUSH_URL
           value: '$(GITHUB_PUSH_URL_BASE)/$(GITHUB_REPO_NAME)'
 
-steps:
+      steps:
 #Create a folder to download the Git Repo to
       - bash: |
             pwd
