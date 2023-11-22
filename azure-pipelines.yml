@@ -23,6 +23,12 @@ stages:
         vmImage: 'windows-2019'
         name: Azure pipelines
       steps:
+      - task: PowerShell@2
+        displayName: 'List files in the Working Directory'
+        inputs:
+            targetType: 'inline'
+            script: 'Get-ChildItem -Path "$(System.ArtifactsDirectory)" -recurse'    
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
 #Create a folder to download the Git Repo to
       - bash: |
             pwd
