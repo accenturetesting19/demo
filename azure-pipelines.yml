@@ -16,7 +16,7 @@ stages:
       variables:
         - group: GitHub_Settings  
         - name: GITHUB_REPO_NAME
-          value: 'demo
+          value: 'demo'
         - name: GITHUB_REPO_URL
           value: '$(GITHUB_ACCOUNT_URL)/$(GITHUB_REPO_NAME)'
         - name: GITHUB_PUSH_URL
