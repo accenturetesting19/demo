@@ -1,0 +1,45 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+- stage: Build
+  jobs:
+    - job: Build
+      variables:
+        - group: GitHub_Settings  
+        - name: GITHUB_REPO_NAME
+          value: 'demo
+        - name: GITHUB_REPO_URL
+          value: '$(GITHUB_ACCOUNT_URL)/$(GITHUB_REPO_NAME)'
+        - name: GITHUB_PUSH_URL
+          value: '$(GITHUB_PUSH_URL_BASE)/$(GITHUB_REPO_NAME)'
+
+steps:
+#Create a folder to download the Git Repo to
+      - bash: |
+            pwd
+            mkdir Git   
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+            displayName: 'Create folder for Git'
+
+#Download the Git Repo to the git folder we created
+      - bash: |
+            pwd
+            git config --global user.name $GITHUB_USER_DISPLAYNAME
+            git config --global user.email $GITHUB_USER_EMAIL
+            git init
+            echo "Git Url:"
+            echo "$GITHUB_REPO_URL"
+            git remote add origin $GITHUB_REPO_URL
+            git clone $GITHUB_REPO_URL
+            workingDirectory: '$(System.DefaultWorkingDirectory)/Git'
+            displayName: 'Clone Github Repo'
+
