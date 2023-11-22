@@ -6,9 +6,6 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
-
 stages:
 - stage: Build
   jobs:
@@ -22,6 +19,9 @@ stages:
         - name: GITHUB_PUSH_URL
           value: '$(GITHUB_PUSH_URL_BASE)/$(GITHUB_REPO_NAME)'
 
+      pool:
+        vmImage: 'windows-2019'
+        name: Azure pipelines
       steps:
 #Create a folder to download the Git Repo to
       - bash: |
